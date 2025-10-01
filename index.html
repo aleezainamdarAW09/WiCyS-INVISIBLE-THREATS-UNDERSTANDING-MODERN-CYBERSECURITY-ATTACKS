@@ -3,71 +3,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Secure Login</title>
+    <title>Registration</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #0a1f44, #0f2c5c);
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
         }
-        .login-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            text-align: center;
+            width: 350px;
         }
-        input[type="text"], input[type="password"] {
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #00bfff;
+        }
+        p {
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0 16px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px;
+            padding: 10px;
+            margin: 8px 0;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
             cursor: pointer;
-            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
         }
-        input[type="submit"]:hover {
-            background-color: #45a049;
+        button:hover {
+            background-color: #005fa3;
         }
-        .message {
+        #message {
             margin-top: 20px;
-            color: red;
-            font-weight: bold;
+            font-size: 16px;
+            color: #00ffcc;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login to Your Account</h2>
-        <form id="phishForm" onsubmit="handleSubmit(event)">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-
-            <input type="submit" value="Login">
+    <div class="container">
+        <h1>Registeration</h1>
+        <p>Sign up now and receive your exclusive goodies!</p>
+        <form id="registrationForm">
+            <input type="text" placeholder="Full Name" required><br>
+            <input type="email" placeholder="Email Address" required><br>
+            <input type="password" placeholder="Create Password" required><br>
+            <button type="submit">Register</button>
         </form>
-        <div class="message" id="message"></div>
+        <div id="message"></div>
     </div>
 
     <script>
-        function handleSubmit(event) {
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            document.getElementById('message').innerText = "Downloading your Coupon...";
+            document.getElementById("message").innerText = "🎉 You’ve been phished! Downloading your goodies...";
             setTimeout(function() {
-                window.location.href = 'Coupon.png';
+                const link = document.createElement("a");
+                link.href = "you-have-been-phished.png";
+                link.download = "you-have-been-phished.png";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             }, 1500);
-        }
+        });
     </script>
 </body>
 </html>
